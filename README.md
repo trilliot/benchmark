@@ -34,7 +34,7 @@ sysbench 1.0.14
 | Disk (writes/s) | 1305.44 | 284.13 | 992.92 | 233.46 | DigitalOcean |
 | Disk (read MiB/s) | 30.60 | 6.66 | 23.27 | 5.47 | DigitalOcean |
 | Disk (write MiB/s) | 20.40 | 4.44 | 15.51 | 3.65 | DigitalOcean |
-| Network (Mbits/sec) | 913 | 102 | 3730 |  | Vultr |
+| Network (Mbits/sec) | 913 | 102 | 3730 | 914 | Vultr |
 
 ## Tests
 
