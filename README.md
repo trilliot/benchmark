@@ -5,7 +5,7 @@
 - DigitalOcean 2 vCPU/4 GB (20$/month)
 - OVH S1-8 (2 vCPU/8 GB) (13€/month)
 - Vultr 2 vCPU/4 GB (20$/month)
-- Scaleway C2S (4 vCPU/8 GB) (12€/month)
+- Scaleway START1-S (2 vCPU/2 GB) (4€/month)
 
 ## Configuration
 
@@ -28,13 +28,13 @@ sysbench 1.0.14
 
 | Component | DigitalOcean | OVH | Vultr | Scaleway | Winner |
 |-----------|--------------|-----|-------|----------|--------|
-| CPU (events/s) | 6136.55 | 7583.36 | 9762.53 | 4333.98 | DigitalOcean |
-| Memory (MiB/s) | 3327.92 | 4132.54 | 1378.09 | 3279.58 | OVH | 
-| Disk (reads/s) | 1958.16 | 426.19 | 1489.38 | 250.79 | DigitalOcean |
-| Disk (writes/s) | 1305.44 | 284.13 | 992.92 | 167.19 | DigitalOcean |
-| Disk (read MiB/s) | 30.60 | 6.66 | 23.27 | 3.92 | DigitalOcean |
-| Disk (write MiB/s) | 20.40 | 4.44 | 15.51 | 2.61 | DigitalOcean |
-| Network (Mbits/sec) | 913 | 102 | 3730 | 2300 | Vultr |
+| CPU (events/s) | 6136.55 | 7583.36 | 9762.53 |  | DigitalOcean |
+| Memory (MiB/s) | 3327.92 | 4132.54 | 1378.09 |  | OVH | 
+| Disk (reads/s) | 1958.16 | 426.19 | 1489.38 |  | DigitalOcean |
+| Disk (writes/s) | 1305.44 | 284.13 | 992.92 |  | DigitalOcean |
+| Disk (read MiB/s) | 30.60 | 6.66 | 23.27 |  | DigitalOcean |
+| Disk (write MiB/s) | 20.40 | 4.44 | 15.51 |  | DigitalOcean |
+| Network (Mbits/sec) | 913 | 102 | 3730 |  | Vultr |
 
 ## Tests
 
@@ -147,37 +147,6 @@ Threads fairness:
 
 Scaleway
 ```
-# sysbench cpu --cpu-max-prime=2000 run
-sysbench 1.0.14 (using bundled LuaJIT 2.1.0-beta2)
-
-Running the test with following options:
-Number of threads: 1
-Initializing random number generator from current time
-
-
-Prime numbers limit: 2000
-
-Initializing worker threads...
-
-Threads started!
-
-CPU speed:
-    events per second:  4333.98
-
-General statistics:
-    total time:                          10.0003s
-    total number of events:              43348
-
-Latency (ms):
-         min:                                    0.23
-         avg:                                    0.23
-         max:                                    0.27
-         95th percentile:                        0.23
-         sum:                                 9986.89
-
-Threads fairness:
-    events (avg/stddev):           43348.0000/0.00
-    execution time (avg/stddev):   9.9869/0.00
 ```
 
 ### Memory
@@ -307,43 +276,6 @@ Threads fairness:
 
 Scaleway
 ```
-# sysbench memory --threads=2 run
-sysbench 1.0.14 (using bundled LuaJIT 2.1.0-beta2)
-
-Running the test with following options:
-Number of threads: 2
-Initializing random number generator from current time
-
-
-Running memory speed test with the following options:
-  block size: 1KiB
-  total size: 102400MiB
-  operation: write
-  scope: global
-
-Initializing worker threads...
-
-Threads started!
-
-Total operations: 33588540 (3358290.77 per second)
-
-32801.31 MiB transferred (3279.58 MiB/sec)
-
-
-General statistics:
-    total time:                          10.0001s
-    total number of events:              33588540
-
-Latency (ms):
-         min:                                    0.00
-         avg:                                    0.00
-         max:                                    0.06
-         95th percentile:                        0.00
-         sum:                                 9730.44
-
-Threads fairness:
-    events (avg/stddev):           16794270.0000/3236.00
-    execution time (avg/stddev):   4.8652/0.00
 ```
 
 
@@ -507,54 +439,6 @@ Threads fairness:
 
 Scaleway
 ```
-# sysbench --test=fileio --file-total-size=30G --file-test-mode=rndrw --max-time=300 --max-requests=0 run
-WARNING: the --test option is deprecated. You can pass a script name or path on the command line without any options.
-WARNING: --max-time is deprecated, use --time instead
-sysbench 1.0.14 (using bundled LuaJIT 2.1.0-beta2)
-
-Running the test with following options:
-Number of threads: 1
-Initializing random number generator from current time
-
-
-Extra file open flags: (none)
-128 files, 240MiB each
-30GiB total file size
-Block size 16KiB
-Number of IO requests: 0
-Read/Write ratio for combined random IO test: 1.50
-Periodic FSYNC enabled, calling fsync() each 100 requests.
-Calling fsync() at the end of test, Enabled.
-Using synchronous I/O mode
-Doing random r/w test
-Initializing worker threads...
-
-Threads started!
-
-
-File operations:
-    reads/s:                      250.79
-    writes/s:                     167.19
-    fsyncs/s:                     534.85
-
-Throughput:
-    read, MiB/s:                  3.92
-    written, MiB/s:               2.61
-
-General statistics:
-    total time:                          300.0090s
-    total number of events:              285861
-
-Latency (ms):
-         min:                                    0.00
-         avg:                                    1.05
-         max:                                  425.75
-         95th percentile:                        0.84
-         sum:                               299682.30
-
-Threads fairness:
-    events (avg/stddev):           285861.0000/0.00
-    execution time (avg/stddev):   299.6823/0.00
 ```
 
 
@@ -613,13 +497,4 @@ write failed: Connection reset by peer
 
 Scaleway
 ```
-# iperf -c bouygues.iperf.fr
-------------------------------------------------------------
-Client connecting to bouygues.iperf.fr, TCP port 5001
-TCP window size: 45.0 KByte (default)
-------------------------------------------------------------
-[  3] local 10.1.73.155 port 40178 connected with 89.84.1.222 port 5001
-write failed: Connection reset by peer
-[ ID] Interval       Transfer     Bandwidth
-[  3]  0.0- 3.2 sec   887 MBytes  2.30 Gbits/sec
 ```
