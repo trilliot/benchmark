@@ -28,8 +28,8 @@ sysbench 1.0.14
 
 | Component | DigitalOcean | OVH | Vultr | Scaleway | Winner |
 |-----------|--------------|-----|-------|----------|--------|
-| CPU (events/s) | 6136.55 | 7583.36 | 9762.53 |  | DigitalOcean |
-| Memory (MiB/s) | 3327.92 | 4132.54 | 1378.09 |  | OVH | 
+| CPU (events/s) | 6136.55 | 7583.36 | 9762.53 | 10343.63 | Scaleway |
+| Memory (MiB/s) | 3327.92 | 4132.54 | 1378.09 | 2863.78 | OVH | 
 | Disk (reads/s) | 1958.16 | 426.19 | 1489.38 |  | DigitalOcean |
 | Disk (writes/s) | 1305.44 | 284.13 | 992.92 |  | DigitalOcean |
 | Disk (read MiB/s) | 30.60 | 6.66 | 23.27 |  | DigitalOcean |
@@ -147,6 +147,37 @@ Threads fairness:
 
 Scaleway
 ```
+# sysbench cpu --cpu-max-prime=2000 run
+sysbench 1.0.14 (using bundled LuaJIT 2.1.0-beta2)
+
+Running the test with following options:
+Number of threads: 1
+Initializing random number generator from current time
+
+
+Prime numbers limit: 2000
+
+Initializing worker threads...
+
+Threads started!
+
+CPU speed:
+    events per second: 10343.63
+
+General statistics:
+    total time:                          10.0001s
+    total number of events:              103457
+
+Latency (ms):
+         min:                                    0.09
+         avg:                                    0.10
+         max:                                    0.81
+         95th percentile:                        0.10
+         sum:                                 9958.76
+
+Threads fairness:
+    events (avg/stddev):           103457.0000/0.00
+    execution time (avg/stddev):   9.9588/0.00
 ```
 
 ### Memory
@@ -276,6 +307,43 @@ Threads fairness:
 
 Scaleway
 ```
+# sysbench memory --threads=2 run
+sysbench 1.0.14 (using bundled LuaJIT 2.1.0-beta2)
+
+Running the test with following options:
+Number of threads: 2
+Initializing random number generator from current time
+
+
+Running memory speed test with the following options:
+  block size: 1KiB
+  total size: 102400MiB
+  operation: write
+  scope: global
+
+Initializing worker threads...
+
+Threads started!
+
+Total operations: 29332442 (2932506.33 per second)
+
+28644.96 MiB transferred (2863.78 MiB/sec)
+
+
+General statistics:
+    total time:                          10.0002s
+    total number of events:              29332442
+
+Latency (ms):
+         min:                                    0.00
+         avg:                                    0.00
+         max:                                    0.29
+         95th percentile:                        0.00
+         sum:                                10249.92
+
+Threads fairness:
+    events (avg/stddev):           14666221.0000/51279.00
+    execution time (avg/stddev):   5.1250/0.03
 ```
 
 
