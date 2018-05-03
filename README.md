@@ -30,10 +30,10 @@ sysbench 1.0.14
 |-----------|--------------|-----|-------|----------|--------|
 | CPU (events/s) | 6136.55 | 7583.36 | 9762.53 | 10343.63 | Scaleway |
 | Memory (MiB/s) | 3327.92 | 4132.54 | 1378.09 | 2863.78 | OVH | 
-| Disk (reads/s) | 1958.16 | 426.19 | 1489.38 |  | DigitalOcean |
-| Disk (writes/s) | 1305.44 | 284.13 | 992.92 |  | DigitalOcean |
-| Disk (read MiB/s) | 30.60 | 6.66 | 23.27 |  | DigitalOcean |
-| Disk (write MiB/s) | 20.40 | 4.44 | 15.51 |  | DigitalOcean |
+| Disk (reads/s) | 1958.16 | 426.19 | 1489.38 | 350.20 | DigitalOcean |
+| Disk (writes/s) | 1305.44 | 284.13 | 992.92 | 233.46 | DigitalOcean |
+| Disk (read MiB/s) | 30.60 | 6.66 | 23.27 | 5.47 | DigitalOcean |
+| Disk (write MiB/s) | 20.40 | 4.44 | 15.51 | 3.65 | DigitalOcean |
 | Network (Mbits/sec) | 913 | 102 | 3730 |  | Vultr |
 
 ## Tests
@@ -507,6 +507,60 @@ Threads fairness:
 
 Scaleway
 ```
+# sysbench --test=fileio --file-total-size=30G --file-test-mode=rndrw --max-time=300 --max-requests=0
+WARNING: the --test option is deprecated. You can pass a script name or path on the command line without any options.
+WARNING: --max-time is deprecated, use --time instead
+sysbench 1.0.14 (using bundled LuaJIT 2.1.0-beta2)
+
+The 'fileio' test requires a command argument. See 'sysbench fileio help'
+[root@scw-baffd9 ~]# sysbench --test=fileio --file-total-size=30G --file-test-mode=rndrw --max-time=300 --max-requests=0 run
+WARNING: the --test option is deprecated. You can pass a script name or path on the command line without any options.
+WARNING: --max-time is deprecated, use --time instead
+sysbench 1.0.14 (using bundled LuaJIT 2.1.0-beta2)
+
+Running the test with following options:
+Number of threads: 1
+Initializing random number generator from current time
+
+
+Extra file open flags: (none)
+128 files, 240MiB each
+30GiB total file size
+Block size 16KiB
+Number of IO requests: 0
+Read/Write ratio for combined random IO test: 1.50
+Periodic FSYNC enabled, calling fsync() each 100 requests.
+Calling fsync() at the end of test, Enabled.
+Using synchronous I/O mode
+Doing random r/w test
+Initializing worker threads...
+
+Threads started!
+
+
+File operations:
+    reads/s:                      339.59
+    writes/s:                     226.40
+    fsyncs/s:                     724.38
+
+Throughput:
+    read, MiB/s:                  5.31
+    written, MiB/s:               3.54
+
+General statistics:
+    total time:                          300.0026s
+    total number of events:              387117
+
+Latency (ms):
+         min:                                    0.01
+         avg:                                    0.77
+         max:                                   18.52
+         95th percentile:                        2.61
+         sum:                               298870.35
+
+Threads fairness:
+    events (avg/stddev):           387117.0000/0.00
+    execution time (avg/stddev):   298.8703/0.00
 ```
 
 
@@ -565,4 +619,13 @@ write failed: Connection reset by peer
 
 Scaleway
 ```
+# iperf -c bouygues.iperf.fr
+------------------------------------------------------------
+Client connecting to bouygues.iperf.fr, TCP port 5001
+TCP window size: 85.0 KByte (default)
+------------------------------------------------------------
+[  3] local 10.14.115.129 port 39750 connected with 89.84.1.222 port 5001
+write failed: Connection reset by peer
+[ ID] Interval       Transfer     Bandwidth
+[  3]  0.0- 8.1 sec   887 MBytes   914 Mbits/sec
 ```
