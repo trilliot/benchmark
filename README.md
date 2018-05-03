@@ -507,13 +507,7 @@ Threads fairness:
 
 Scaleway
 ```
-# sysbench --test=fileio --file-total-size=30G --file-test-mode=rndrw --max-time=300 --max-requests=0
-WARNING: the --test option is deprecated. You can pass a script name or path on the command line without any options.
-WARNING: --max-time is deprecated, use --time instead
-sysbench 1.0.14 (using bundled LuaJIT 2.1.0-beta2)
-
-The 'fileio' test requires a command argument. See 'sysbench fileio help'
-[root@scw-baffd9 ~]# sysbench --test=fileio --file-total-size=30G --file-test-mode=rndrw --max-time=300 --max-requests=0 run
+# sysbench --test=fileio --file-total-size=30G --file-test-mode=rndrw --max-time=300 --max-requests=0 run
 WARNING: the --test option is deprecated. You can pass a script name or path on the command line without any options.
 WARNING: --max-time is deprecated, use --time instead
 sysbench 1.0.14 (using bundled LuaJIT 2.1.0-beta2)
@@ -568,7 +562,7 @@ Threads fairness:
 
 DigitalOcean
 ```
-# iperf -c iperf -c bouygues.iperf.fr
+# iperf -c bouygues.iperf.fr
 ------------------------------------------------------------
 Client connecting to bouygues.iperf.fr, TCP port 5001
 TCP window size: 85.0 KByte (default)
@@ -581,7 +575,7 @@ write failed: Connection reset by peer
 
 DigitalOcean Optimized
 ```
-# iperf -c iperf -c bouygues.iperf.fr
+# iperf -c bouygues.iperf.fr
 ------------------------------------------------------------
 Client connecting to bouygues.iperf.fr, TCP port 5001
 TCP window size: 85.0 KByte (default)
@@ -594,7 +588,7 @@ write failed: Connection reset by peer
 
 OVH
 ```
-# iperf -c iperf -c bouygues.iperf.fr
+# iperf -c bouygues.iperf.fr
 ------------------------------------------------------------
 Client connecting to bouygues.iperf.fr, TCP port 5001
 TCP window size: 85.0 KByte (default)
